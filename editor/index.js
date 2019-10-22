@@ -121,6 +121,8 @@ const initEditor = () => {
 
   document.getElementById('redo-button')
     .addEventListener('click', () => editor.redo());
+
+  const tabs = new Tabs()
 };
 
 loadImageFromFile();

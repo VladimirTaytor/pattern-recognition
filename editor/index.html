@@ -15,18 +15,23 @@
         background-color: white;
         padding: 5px 20px 20px 20px;
         border: 1px solid darkgrey;
-        border-radius: 25px;
-        max-width: 150px;
+        border-radius: 5px;
+        width: 150px;
         text-align: center;
     }
 
     #controls button {
-        width: 90%;
+        width: 100%;
         margin-top: 5px;
+        padding: 5px;
         margin-bottom: 5px;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+        background-color: antiquewhite;
+        border: 1px solid black;
+    }
+
+    #controls button:hover {
+        cursor: pointer;
+        text-decoration: underline;
     }
 
     #editor-canvas {
@@ -43,6 +48,26 @@
         z-index: 0;
         border-radius: 2px;
     }
+
+    .tabs__buttons {
+        display: flex;
+    }
+
+    button.tabs__button {
+        background-color: transparent;
+        border: none;
+
+        border-bottom: green 1px solid;
+    }
+
+    .tabs__panel {
+        display: none;
+    }
+
+    .tabs__panel_selected {
+        display: block;
+    }
+
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <body>
@@ -50,31 +75,49 @@
 <canvas id="editor-canvas"></canvas>
 <canvas id="hist-canvas"></canvas>
 <div id="controls">
-    <p>basic</p>
-    <button id="undo-button">Undo</button>
-    <button id="redo-button">Redo</button>
-    <p>lab8</p>
-    <button id="grey-image-button">Grey Image</button>
-    <button id="normilize-button">Normilize</button>
-    <button id="equalize-button">Equalize</button>
-    <p>lab9</p>
-    <button id="perspective-transform-button">Perspective Transform</button>
-    <button disabled id="bilinear-transform-button">Bilinear Transform (Not completed)</button>
-    <button id="erosion-button">Erosion</button>
-    <button id="dilation-button">Dilation</button>
-    <button id="opening-button">Opening</button>
-    <button id="closing-button">Closing</button>
-    <button id="median-blur-button">Median Blur</button>
-    <button id="blur-video-button">Blur Video</button>
-    <p>lab10</p>
-    <button id="find-balls-button">Find Balls</button>
-    <p>lab11</p>
-    <button id="find-contours-button">Find Contours</button>
-    <button disabled id="strange-formula-button">sqrt( imageDX^2 + imageDY^2 )</button>
-    <button id="sobel-button">Sobel</button>
-    <button id="canny-button">Canny</button>
+    <div class="tabs">
+        <div class="tabs__buttons">
+            <button class="tabs__button" data-panelid="lab8">
+                Lab 8
+            </button>
+            <button class="tabs__button" data-panelid="lab9">
+                Lab 9
+            </button>
+            <button class="tabs__button" data-panelid="lab10">
+                Lab 10
+            </button>
+            <button class="tabs__button" data-panelid="lab11">
+                Lab 11
+            </button>
+        </div>
+        <div class="tabs__panels">
+            <div id="lab8" class="tabs__panel">
+                <button id="grey-image-button">Grey Image</button>
+                <button id="normilize-button">Normilize</button>
+                <button id="equalize-button">Equalize</button>
+            </div>
+            <div id="lab9" class="tabs__panel">
+                <button id="perspective-transform-button">Perspective Transform</button>
+                <button disabled id="bilinear-transform-button">Bilinear Transform (Not completed)</button>
+                <button id="erosion-button">Erosion</button>
+                <button id="dilation-button">Dilation</button>
+                <button id="opening-button">Opening</button>
+                <button id="closing-button">Closing</button>
+                <button id="median-blur-button">Median Blur</button>
+                <button id="blur-video-button">Blur Video</button>
+            </div>
+            <div id="lab10" class="tabs__panel">
+                <button id="find-balls-button">Find Balls</button>
+            </div>
+            <div id="lab11" class="tabs__panel">
+                <button id="find-contours-button">Find Contours</button>
+                <button disabled id="strange-formula-button">sqrt( imageDX^2 + imageDY^2 )</button>
+                <button id="sobel-button">Sobel</button>
+                <button id="canny-button">Canny</button>
+            </div>
+        </div>
+    </div>
 </div>
-
 <script src="../lib/old_opencv.js"></script>
 <script src="editor.js"></script>
 <script src="transforms.js"></script>

@@ -115,3 +115,32 @@ class ExecuteOperation extends Operation {
     this.method();
   }
 }
+
+class Tabs {
+  constructor() {
+    this.activeTab = "lab8";
+    this.init()
+  }
+
+  addHandlers() {
+    Array.from(document.querySelectorAll('.tabs__buttons .tabs__button'))
+      .forEach(button => {
+        button.addEventListener('click', (e) => {
+          this.activeTab = button.dataset.panelid
+          this.updateActive()
+        })
+      })
+  }
+
+  updateActive() {
+    Array.from(document.getElementsByClassName('tabs__panel_selected'))
+      .forEach(element => element.classList.remove('tabs__panel_selected'))
+    document.querySelector(`#${this.activeTab}`).classList.add('tabs__panel_selected')
+  }
+
+  init() {
+    this.updateActive()
+    this.addHandlers()
+  }
+
+}
