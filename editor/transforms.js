@@ -182,15 +182,17 @@ function findBalls({src}) {
   const dst = src.clone();
   const filled = new cv.Mat();
   cv.cvtColor(src, filled, cv.COLOR_RGBA2GRAY, 0);
-  cv.threshold(filled, filled, 50, 200, cv.THRESH_BINARY);
+  cv.threshold(filled, filled, 120, 200, cv.THRESH_BINARY);
 
   let contours = new cv.MatVector();
   let hierarchy = new cv.Mat();
 // You can try more different parameters
   cv.findContours(filled, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 
-  const minRectDim = 30;
-  const maxRectDim = 70;
+  //return {dst: filled}
+
+  const minRectDim = 20;
+  const maxRectDim = 45;
 
   for (let i = 0; i < contours.size(); ++i) {
     const rect = cv.boundingRect(contours.get(i));
