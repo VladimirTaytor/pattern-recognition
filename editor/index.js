@@ -116,11 +116,13 @@ const initEditor = () => {
     .addEventListener('click', () => blurVideo(canvas, 11));
 
 
-  document.getElementById('undo-button')
-    .addEventListener('click', () => editor.undo());
-
-  document.getElementById('redo-button')
-    .addEventListener('click', () => editor.redo());
+  document.addEventListener("keydown", event => {
+    if (event.isComposing || event.code === "ArrowLeft") {
+      editor.undo();
+    } else if(event.isComposing || event.code === "ArrowRight") {
+      editor.redo()
+    }
+  });
 
   const tabs = new Tabs()
 };

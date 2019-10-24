@@ -189,8 +189,8 @@ function findBalls({src}) {
 // You can try more different parameters
   cv.findContours(filled, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 
-  const minRectDim = 100;
-  const maxRectDim = 300;
+  const minRectDim = 30;
+  const maxRectDim = 70;
 
   for (let i = 0; i < contours.size(); ++i) {
     const rect = cv.boundingRect(contours.get(i));
